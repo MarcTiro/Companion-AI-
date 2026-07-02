@@ -1,0 +1,1636 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth theme-blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompanionAI Research Programme | Loneliness Detection & Embedded Intervention</title>
+  <meta name="description" content="A multidisciplinary research initiative focused on detecting loneliness using multimodal AI and delivering embedded interventions powered by Microsoft Azure.">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            msblue: '#0078D4',
+            mscyan: '#00BCF2',
+            msdark: '#1F1F1F',
+            mscharcoal: '#111111',
+            accentpurple: '#B4009E',
+            accentgreen: '#107C41',
+            accentorange: '#D83B01'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Segoe UI', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom Styles for Theme Switching & Research Hub -->
+  <style>
+    /* CSS Variables for Dynamic Color Theming */
+    :root {
+      --primary: #0078D4;
+      --primary-glow: rgba(0, 120, 212, 0.15);
+      --primary-border: rgba(0, 120, 212, 0.3);
+    }
+    .theme-blue {
+      --primary: #0078D4;
+      --primary-glow: rgba(0, 120, 212, 0.15);
+      --primary-border: rgba(0, 120, 212, 0.3);
+    }
+    .theme-coffee {
+      --primary: #725C42;
+      --primary-glow: rgba(114, 92, 66, 0.15);
+      --primary-border: rgba(114, 92, 66, 0.3);
+    }
+    .theme-purple {
+      --primary: #8660A9;
+      --primary-glow: rgba(134, 96, 169, 0.15);
+      --primary-border: rgba(134, 96, 169, 0.3);
+    }
+    .theme-orange {
+      --primary: #D83B01;
+      --primary-glow: rgba(216, 59, 1, 0.15);
+      --primary-border: rgba(216, 59, 1, 0.3);
+    }
+    .theme-green {
+      --primary: #107C41;
+      --primary-glow: rgba(16, 124, 65, 0.15);
+      --primary-border: rgba(16, 124, 65, 0.3);
+    }
+
+    /* Override Tailwind primary color classes dynamically */
+    .text-msblue {
+      color: var(--primary) !important;
+    }
+    .bg-msblue {
+      background-color: var(--primary) !important;
+    }
+    .border-msblue {
+      border-color: var(--primary) !important;
+    }
+    .border-b-msblue {
+      border-bottom-color: var(--primary) !important;
+    }
+    .bg-msblue\/10 {
+      background-color: var(--primary-glow) !important;
+    }
+    .border-msblue\/20 {
+      border-color: var(--primary-border) !important;
+    }
+    .border-msblue\/10 {
+      border-color: var(--primary-glow) !important;
+    }
+    .hover\:border-msblue\/30:hover {
+      border-color: var(--primary-border) !important;
+    }
+    .shadow-msblue\/20 {
+      box-shadow: 0 4px 14px 0 var(--primary-glow) !important;
+    }
+    .shadow-msblue\/25 {
+      box-shadow: 0 4px 14px 0 var(--primary-glow) !important;
+    }
+
+    /* Hide horizontal scrollbar but keep scroll functionality */
+    .scrollbar-none::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-none {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Fluent Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .dark ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Fluent Design Glassmorphism */
+    .acrylic-light {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .acrylic-dark {
+      background: rgba(26, 26, 26, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Animated background gradient */
+    @keyframes gradient-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient {
+      background-size: 200% 200%;
+      animation: gradient-flow 15s ease infinite;
+    }
+
+    /* Sub-page Switch Fading Animation */
+    .workspace-panel {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Floating card animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-mscharcoal dark:text-gray-100 font-sans transition-colors duration-300 antialiased">
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-msblue z-50 transition-all duration-100" style="width: 0%"></div>
+
+  <!-- Header / Navigation -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-4 px-6 md:px-12 bg-white/80 dark:bg-mscharcoal/80 backdrop-blur-md border-b border-gray-200/50 dark:border-white/5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-msblue to-mscyan flex items-center justify-center text-white shadow-lg shadow-msblue/20">
+          <i data-lucide="brain-circuit" class="w-6 h-6 animate-pulse"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-lg tracking-tight leading-none text-gray-900 dark:text-white group-hover:text-msblue transition-colors">CompanionAI</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Research Programme</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu (Anchor Scrolling for Main Layout) -->
+      <nav class="hidden xl:flex items-center space-x-1">
+        <a href="#home" class="px-3 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Home</a>
+        <a href="#research-hub" class="px-3 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Research Hub</a>
+        <a href="#team" class="px-3 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Team</a>
+        <a href="#publications" class="px-3 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Publications</a>
+        <a href="#contact" class="px-3 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Controls: Color Theme Switcher & Search & Mode -->
+      <div class="flex items-center space-x-3">
+        <!-- 5 Cool Theme Colors Picker -->
+        <div class="flex items-center space-x-1.5 bg-gray-100 dark:bg-white/5 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-white/5">
+          <!-- Blue -->
+          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#0078D4] border-2 border-white dark:border-mscharcoal ring-2 ring-msblue transition-transform" data-color="blue" title="Azure Blue"></button>
+          <!-- Coffee / White Blend -->
+          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#725C42] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="coffee" title="Coffee Blend"></button>
+          <!-- Purple -->
+          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#8660A9] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="purple" title="Amethyst Purple"></button>
+          <!-- Orange -->
+          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#D83B01] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="orange" title="Sunset Orange"></button>
+          <!-- Green -->
+          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#107C41] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="green" title="Forest Green"></button>
+        </div>
+
+        <!-- Global Search Button -->
+        <button id="search-trigger" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Search site">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+        </button>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-trigger" class="xl:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Open menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="absolute right-0 top-0 bottom-0 w-80 bg-white dark:bg-msdark p-6 shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <span class="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white">Navigation</span>
+          <button id="mobile-menu-close" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+          <a href="#home" class="mobile-nav-link text-lg font-semibold hover:text-msblue transition-colors">Home</a>
+          <a href="#research-hub" class="mobile-nav-link text-lg font-semibold hover:text-msblue transition-colors">Research Hub</a>
+          <a href="#team" class="mobile-nav-link text-lg font-semibold hover:text-msblue transition-colors">Team</a>
+          <a href="#publications" class="mobile-nav-link text-lg font-semibold hover:text-msblue transition-colors">Publications</a>
+          <a href="#contact" class="mobile-nav-link text-lg font-semibold hover:text-msblue transition-colors">Contact</a>
+        </nav>
+      </div>
+      <div class="border-t border-gray-200 dark:border-white/10 pt-6">
+        <p class="text-xs text-gray-500 dark:text-gray-400">© 2026 CompanionAI. Powered by Microsoft Azure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 flex items-start justify-center pt-24 px-4">
+    <div class="bg-white dark:bg-msdark w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-white/10 transform scale-95 transition-all duration-300">
+      <div class="flex items-center px-4 py-3 border-b border-gray-200 dark:border-white/10">
+        <i data-lucide="search" class="w-5 h-5 text-gray-400 mr-3"></i>
+        <input type="text" id="search-input" placeholder="Search objectives, streams, publications, team..." class="bg-transparent border-0 outline-none w-full text-gray-900 dark:text-white py-1">
+        <button id="search-close" class="p-1 rounded hover:bg-gray-100 dark:hover:bg-white/5 text-gray-400">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="search-results" class="max-h-96 overflow-y-auto p-4 space-y-4">
+        <p class="text-sm text-gray-500 dark:text-gray-400">Type something to search the project resources...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN SCROLLABLE LAYOUT -->
+  <main>
+    
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-mscharcoal dark:to-msdark transition-colors duration-300">
+      <canvas id="particle-canvas" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-msblue/10 rounded-full blur-3xl mix-blend-screen pointer-events-none"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accentpurple/5 rounded-full blur-3xl mix-blend-screen pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        <div class="lg:col-span-7 flex flex-col items-start text-left">
+          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-msblue/10 text-msblue dark:bg-msblue/20 dark:text-mscyan text-xs font-semibold tracking-wide uppercase mb-6 shadow-sm border border-msblue/10">
+            <span class="w-2 h-2 rounded-full bg-msblue animate-ping"></span>
+            <span>Microsoft Azure Partner Research</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-[1.1] mb-6">
+            CompanionAI <br class="hidden sm:inline">Research Programme
+          </h1>
+          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-light leading-relaxed max-w-2xl mb-8">
+            A multidisciplinary research initiative focused on detecting loneliness using multimodal artificial intelligence and delivering embedded interventions through conversational systems powered by Microsoft Azure.
+          </p>
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+            <a href="#research-hub" class="px-8 py-3.5 bg-msblue hover:bg-msblue/90 text-white font-medium rounded-lg shadow-lg shadow-msblue/25 text-center transition-all duration-200 transform hover:-translate-y-0.5">Explore Research Hub</a>
+            <a href="#team" class="px-8 py-3.5 bg-gray-200/80 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 text-gray-800 dark:text-white font-medium rounded-lg text-center transition-all duration-200 border border-gray-300/30">Meet the Team</a>
+          </div>
+
+          <!-- Stats Counters -->
+          <div class="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-gray-200 dark:border-white/10 w-full max-w-lg">
+            <div>
+              <div class="text-3xl font-extrabold text-msblue dark:text-mscyan stat-counter" data-target="200">0</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase font-medium tracking-wider">Annotated Phrases</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-accentpurple stat-counter" data-target="6">0</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase font-medium tracking-wider">Research Streams</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-accentgreen stat-counter" data-target="95">0</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase font-medium tracking-wider">Accuracy Rate (%)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Graph -->
+        <div class="lg:col-span-5 flex justify-center items-center relative select-none">
+          <div class="w-full max-w-[420px] aspect-square rounded-full border border-gray-200/50 dark:border-white/5 flex items-center justify-center relative p-8">
+            <div class="absolute inset-0 rounded-full border-2 border-dashed border-msblue/30 dark:border-msblue/10 animate-[spin_60s_linear_infinite]"></div>
+            <div class="absolute -top-4 left-1/4 p-3 bg-white dark:bg-msdark border border-gray-200/80 dark:border-white/5 rounded-xl shadow-lg flex items-center space-x-2 animate-float">
+              <i data-lucide="mic" class="text-msblue w-5 h-5"></i>
+              <span class="text-xs font-semibold">Audio Processing</span>
+            </div>
+            <div class="absolute bottom-6 -left-6 p-3 bg-white dark:bg-msdark border border-gray-200/80 dark:border-white/5 rounded-xl shadow-lg flex items-center space-x-2 animate-float" style="animation-delay: 2s">
+              <i data-lucide="text-cursor-input" class="text-accentpurple w-5 h-5"></i>
+              <span class="text-xs font-semibold">Sheng / Swahili NLP</span>
+            </div>
+            <div class="absolute top-1/3 -right-8 p-3 bg-white dark:bg-msdark border border-gray-200/80 dark:border-white/5 rounded-xl shadow-lg flex items-center space-x-2 animate-float" style="animation-delay: 4s">
+              <i data-lucide="cpu" class="text-accentgreen w-5 h-5"></i>
+              <span class="text-xs font-semibold">Edge Deployment</span>
+            </div>
+            <div class="w-full h-full rounded-full bg-gradient-to-tr from-msblue/10 to-mscyan/10 border border-msblue/20 flex items-center justify-center overflow-hidden relative shadow-inner">
+              <div class="absolute inset-0 opacity-40 mix-blend-overlay">
+                <svg viewBox="0 0 100 100" class="w-full h-full stroke-msblue stroke-[0.5] fill-none">
+                  <circle cx="50" cy="50" r="40" />
+                  <path d="M50 10 L50 90 M10 50 L90 50 M22 22 L78 78 M22 78 L78 22" />
+                </svg>
+              </div>
+              <div class="relative w-40 h-40 bg-white/80 dark:bg-msdark/80 backdrop-blur-md rounded-full shadow-2xl flex items-center justify-center border border-gray-200 dark:border-white/10 hover:scale-105 transition-transform duration-300">
+                <i data-lucide="brain" class="w-20 h-20 text-msblue dark:text-mscyan"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH HUB SECTION (TABS / PAGES FOR SUB-HEADINGS) -->
+    <section id="research-hub" class="border-t border-b border-gray-200 dark:border-white/5 bg-white dark:bg-msdark transition-colors duration-300">
+      
+      <!-- Sticky Tab Bar for Research Hub Sub-pages -->
+      <div class="sticky top-[73px] z-30 bg-white/90 dark:bg-msdark/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-6 overflow-x-auto flex space-x-8 py-4 scrollbar-none justify-start md:justify-center">
+          <button class="hub-tab-btn font-semibold text-sm whitespace-nowrap pb-2 border-b-2 border-msblue text-msblue transition-all" data-target="hub-about">About the project</button>
+          <button class="hub-tab-btn font-semibold text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white whitespace-nowrap pb-2 border-b-2 border-transparent transition-all" data-target="hub-goals">Project goals</button>
+          <button class="hub-tab-btn font-semibold text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white whitespace-nowrap pb-2 border-b-2 border-transparent transition-all" data-target="hub-system">System engineering</button>
+          <button class="hub-tab-btn font-semibold text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white whitespace-nowrap pb-2 border-b-2 border-transparent transition-all" data-target="hub-cloud">Enterprise cloud</button>
+          <button class="hub-tab-btn font-semibold text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white whitespace-nowrap pb-2 border-b-2 border-transparent transition-all" data-target="hub-streams">Academic streams</button>
+          <button class="hub-tab-btn font-semibold text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white whitespace-nowrap pb-2 border-b-2 border-transparent transition-all" data-target="hub-roadmap">Academic roadmap</button>
+        </div>
+      </div>
+
+      <!-- Hub Sub-Pages Content Panels -->
+      <div class="max-w-7xl mx-auto py-20 px-6 md:px-12">
+        
+        <!-- SUB-PAGE 1: About the project -->
+        <div id="hub-about" class="workspace-panel">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Core Background</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">About the Project</p>
+            <p class="text-lg text-gray-500 dark:text-gray-400 mt-4 leading-relaxed font-light">
+              Loneliness accelerates cognitive decline, impacts sleep quality, and increases mortality. Our research seeks to build culturally nuanced tools to identify and mitigate loneliness in urban populations.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Card 1 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center mb-6">
+                <i data-lucide="users" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Social Isolation Stats</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light">
+                Over 30% of young adults report persistent feelings of isolation in modern urban cities like Nairobi, driven by fragmented support structures and situationships.
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center mb-6">
+                <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Public Health Impact</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light">
+                Severe loneliness carries physical health risks equivalent to smoking 15 cigarettes a day, directly impacting sleep cycle regulations and heart health.
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center mb-6">
+                <i data-lucide="search" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Current Research Gap</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light">
+                Existing diagnostic tools lack cultural grounding, ignoring local vernaculars, expressions of vulnerability, and typical urban code-switching practices.
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center mb-6">
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">AI-Driven Intervention</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light">
+                Providing real-time, low-friction, embedded AI agents offers immediate conversational support to vulnerable people when traditional services are unavailable.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 2: Project goals -->
+        <div id="hub-goals" class="workspace-panel hidden">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Key Targets</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Project Goals</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Goal 1 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal border border-gray-200/50 dark:border-white/5 rounded-2xl flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-start">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center shrink-0 font-extrabold text-lg">01</div>
+              <div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Multimodal Dataset</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
+                  Building a large-scale, ethically collected corpus of loneliness phrases incorporating Sheng, Kiswahili, and local English variations.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Audio Records</span>
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Text Transcripts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Goal 2 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal border border-gray-200/50 dark:border-white/5 rounded-2xl flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-start">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center shrink-0 font-extrabold text-lg">02</div>
+              <div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Machine Learning Models</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
+                  Developing lightweight deep learning classification models capable of identifying loneliness levels with minimal latency.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Feature Extraction</span>
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Transformer Fusion</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Goal 3 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal border border-gray-200/50 dark:border-white/5 rounded-2xl flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-start">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center shrink-0 font-extrabold text-lg">03</div>
+              <div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Empathetic AI Intervention</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
+                  Building automated conversational systems powered by Azure OpenAI to deliver context-aware, empathetic dialogue trees.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Dialogue Science</span>
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Prompt Engineering</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Goal 4 -->
+            <div class="p-8 bg-gray-50 dark:bg-mscharcoal border border-gray-200/50 dark:border-white/5 rounded-2xl flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-start">
+              <div class="w-12 h-12 rounded-xl bg-msblue/10 text-msblue flex items-center justify-center shrink-0 font-extrabold text-lg">04</div>
+              <div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Embedded Edge Deployment</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
+                  Optimizing AI models using ONNX Runtime for low-power operation on mobile platforms and IoT edge systems.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">ONNX Optimization</span>
+                  <span class="px-2.5 py-1 rounded bg-white dark:bg-msdark text-xs text-gray-600 dark:text-gray-300">Mobile SDKs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 3: System engineering -->
+        <div id="hub-system" class="workspace-panel hidden">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Architecture Mapping</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">System Engineering</p>
+          </div>
+
+          <div class="space-y-6 max-w-4xl mx-auto relative">
+            <div class="absolute left-12 top-6 bottom-6 w-0.5 bg-msblue/25 z-0"></div>
+
+            <!-- Layer 1 -->
+            <div class="relative z-10 flex items-start space-x-6 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 transition-colors">
+              <div class="w-12 h-12 rounded-full bg-msblue text-white flex items-center justify-center shrink-0 shadow-lg font-bold">1</div>
+              <div class="flex-1">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white">Data Layer</h4>
+                  <span class="px-2.5 py-0.5 rounded bg-msblue/15 text-msblue text-xs font-semibold">Inputs & Ingestion</span>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Ingests records including raw Audio samples, user Text logs, and structural metadata detailing the social environment context.
+                </p>
+              </div>
+            </div>
+
+            <!-- Layer 2 -->
+            <div class="relative z-10 flex items-start space-x-6 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 transition-colors">
+              <div class="w-12 h-12 rounded-full bg-msblue text-white flex items-center justify-center shrink-0 shadow-lg font-bold">2</div>
+              <div class="flex-1">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white">AI Layer</h4>
+                  <span class="px-2.5 py-0.5 rounded bg-msblue/15 text-msblue text-xs font-semibold">Feature & Models</span>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Performs real-time acoustic feature extraction, semantic parsing of text transcripts, and uses deep Transformer architectures for multimodal fusion.
+                </p>
+              </div>
+            </div>
+
+            <!-- Layer 3 -->
+            <div class="relative z-10 flex items-start space-x-6 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 transition-colors">
+              <div class="w-12 h-12 rounded-full bg-msblue text-white flex items-center justify-center shrink-0 shadow-lg font-bold">3</div>
+              <div class="flex-1">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white">Decision Layer</h4>
+                  <span class="px-2.5 py-0.5 rounded bg-msblue/15 text-msblue text-xs font-semibold">Clinical Inference</span>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Classifies output into four clinically structured severity categories (Not Lonely, Borderline, Lonely, At Risk) while outputting calculated confidence scores.
+                </p>
+              </div>
+            </div>
+
+            <!-- Layer 4 -->
+            <div class="relative z-10 flex items-start space-x-6 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 transition-colors">
+              <div class="w-12 h-12 rounded-full bg-msblue text-white flex items-center justify-center shrink-0 shadow-lg font-bold">4</div>
+              <div class="flex-1">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white">Intervention Layer</h4>
+                  <span class="px-2.5 py-0.5 rounded bg-msblue/15 text-msblue text-xs font-semibold">Dynamic Dialogue</span>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Triggers active chatbot sessions, pushes context-specific behavioral suggestions, and continuous wellbeing monitoring.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 4: Enterprise cloud -->
+        <div id="hub-cloud" class="workspace-panel hidden">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Azure Infrastructure</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Enterprise Cloud</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <!-- Azure Column 1 -->
+            <div class="bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-lg transition-all duration-300">
+              <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-lg bg-msblue/15 text-msblue flex items-center justify-center">
+                  <i data-lucide="database" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Data Services</h3>
+              </div>
+              <ul class="space-y-4">
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Azure Blob Storage</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Azure SQL Database</span>
+                </li>
+              </ul>
+            </div>
+            <!-- Azure Column 2 -->
+            <div class="bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-lg transition-all duration-300">
+              <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-lg bg-msblue/15 text-msblue flex items-center justify-center">
+                  <i data-lucide="cpu" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Machine Learning</h3>
+              </div>
+              <ul class="space-y-4">
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Azure ML Studio</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Azure OpenAI Service</span>
+                </li>
+              </ul>
+            </div>
+            <!-- Azure Column 3 -->
+            <div class="bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-lg transition-all duration-300">
+              <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-lg bg-msblue/15 text-msblue flex items-center justify-center">
+                  <i data-lucide="smartphone" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Edge Deployment</h3>
+              </div>
+              <ul class="space-y-4">
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">ONNX Runtime</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Azure IoT Edge Hub</span>
+                </li>
+              </ul>
+            </div>
+            <!-- Azure Column 4 -->
+            <div class="bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-lg transition-all duration-300">
+              <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-lg bg-msblue/15 text-msblue flex items-center justify-center">
+                  <i data-lucide="git-branch" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Collaboration</h3>
+              </div>
+              <ul class="space-y-4">
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">GitHub Enterprise</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <i data-lucide="check" class="text-msblue w-4 h-4 mt-1 shrink-0"></i>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Azure DevOps Pipelines</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 5: Academic streams -->
+        <div id="hub-streams" class="workspace-panel hidden">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Academic Streams</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Academic Streams</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Stream Student A -->
+            <div class="bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 overflow-hidden hover:shadow-lg transition-shadow">
+              <button class="w-full text-left p-8 flex items-center justify-between focus:outline-none stream-accordion-btn">
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 rounded-full bg-msblue/15 text-msblue flex items-center justify-center font-bold">A</div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Dataset Engineering</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Elizabeth | Data Lead</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 accordion-icon"></i>
+              </button>
+              <div class="px-8 pb-8 border-t border-gray-200 dark:border-white/5 pt-6 hidden stream-content">
+                <div class="space-y-4">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-msblue">Research Question</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 font-light">
+                      How can we gather an ethically compliant, multi-dialect dataset representing expressions of loneliness across English, Kiswahili, and Sheng in urban settings?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stream Student B -->
+            <div class="bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 overflow-hidden hover:shadow-lg transition-shadow">
+              <button class="w-full text-left p-8 flex items-center justify-between focus:outline-none stream-accordion-btn">
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 rounded-full bg-msblue/15 text-msblue flex items-center justify-center font-bold">B</div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Detection Models</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Newton | Detection Lead</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 accordion-icon"></i>
+              </button>
+              <div class="px-8 pb-8 border-t border-gray-200 dark:border-white/5 pt-6 hidden stream-content">
+                <div class="space-y-4">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-msblue">Research Question</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 font-light">
+                      What deep learning models yield optimal classification accuracy when fusing acoustic prosody, conversational markers, and local code-switching transcripts?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stream Student C -->
+            <div class="bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 overflow-hidden hover:shadow-lg transition-shadow">
+              <button class="w-full text-left p-8 flex items-center justify-between focus:outline-none stream-accordion-btn">
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 rounded-full bg-msblue/15 text-msblue flex items-center justify-center font-bold">C</div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Intervention Science</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Wayne | Intervention Lead</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 accordion-icon"></i>
+              </button>
+              <div class="px-8 pb-8 border-t border-gray-200 dark:border-white/5 pt-6 hidden stream-content">
+                <div class="space-y-4">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-msblue">Focus Area</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 font-light">
+                      Developing prompt structures and conversation nodes within Azure OpenAI to ensure dialogues are empathetic, culturally grounded, and safe.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stream Student D -->
+            <div class="bg-gray-50 dark:bg-mscharcoal rounded-2xl border border-gray-200/50 dark:border-white/5 overflow-hidden hover:shadow-lg transition-shadow">
+              <button class="w-full text-left p-8 flex items-center justify-between focus:outline-none stream-accordion-btn">
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 rounded-full bg-msblue/15 text-msblue flex items-center justify-center font-bold">D</div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Deployment & Compression</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Joseph | Deployment Lead</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 accordion-icon"></i>
+              </button>
+              <div class="px-8 pb-8 border-t border-gray-200 dark:border-white/5 pt-6 hidden stream-content">
+                <div class="space-y-4">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-msblue">Research Question</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 font-light">
+                      How can we prune and quantize multi-modal neural network models to run on mobile systems without degrading classification precision?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 6: Academic roadmap -->
+        <div id="hub-roadmap" class="workspace-panel hidden">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Academic Timeline</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Academic Roadmap</p>
+          </div>
+
+          <!-- Roadmap Timeline Block -->
+          <div class="max-w-4xl mx-auto relative mb-20">
+            <div class="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-0.5 bg-gray-300 dark:bg-white/10 hidden md:block"></div>
+            <div class="space-y-12">
+              <!-- Item 1 (Left) -->
+              <div class="relative flex flex-col md:flex-row md:justify-between items-center md:items-start">
+                <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-msblue rounded-full border-4 border-white dark:border-mscharcoal shadow hidden md:block z-10"></div>
+                <div class="w-full md:w-[45%] bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm relative group cursor-pointer hover:border-msblue/40 transition-colors roadmap-card">
+                  <span class="text-xs font-bold text-msblue uppercase tracking-widest block mb-2">Stage 01</span>
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center justify-between">
+                    Foundation Literature
+                    <i data-lucide="plus-circle" class="w-4 h-4 text-gray-400 group-hover:text-msblue transition-colors roadmap-toggle-icon"></i>
+                  </h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Reviewing sociological constructs of loneliness, public health metrics, and UCLA scale validation.
+                  </p>
+                  <div class="mt-4 pt-4 border-t border-gray-200/50 dark:border-white/5 hidden roadmap-extra">
+                    <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                      Builds the theoretical foundation for digital diagnostics in accordance with recognized scales.
+                    </p>
+                  </div>
+                </div>
+                <div class="w-full md:w-[45%] hidden md:block"></div>
+              </div>
+
+              <!-- Item 2 (Right) -->
+              <div class="relative flex flex-col md:flex-row md:justify-between items-center md:items-start">
+                <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-msblue rounded-full border-4 border-white dark:border-mscharcoal shadow hidden md:block z-10"></div>
+                <div class="w-full md:w-[45%] hidden md:block"></div>
+                <div class="w-full md:w-[45%] bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm relative group cursor-pointer hover:border-msblue/40 transition-colors roadmap-card">
+                  <span class="text-xs font-bold text-msblue uppercase tracking-widest block mb-2">Stage 02</span>
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center justify-between">
+                    Intermediate Studies
+                    <i data-lucide="plus-circle" class="w-4 h-4 text-gray-400 group-hover:text-msblue transition-colors roadmap-toggle-icon"></i>
+                  </h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Investigating acoustic feature extraction, sheng dictionaries, and multimodal network designs.
+                  </p>
+                  <div class="mt-4 pt-4 border-t border-gray-200/50 dark:border-white/5 hidden roadmap-extra">
+                    <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                      Fuses signal acoustics with localized dialect transcripts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 (Left) -->
+              <div class="relative flex flex-col md:flex-row md:justify-between items-center md:items-start">
+                <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-msblue rounded-full border-4 border-white dark:border-mscharcoal shadow hidden md:block z-10"></div>
+                <div class="w-full md:w-[45%] bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm relative group cursor-pointer hover:border-msblue/40 transition-colors roadmap-card">
+                  <span class="text-xs font-bold text-msblue uppercase tracking-widest block mb-2">Stage 03</span>
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center justify-between">
+                    Advanced Implementations
+                    <i data-lucide="plus-circle" class="w-4 h-4 text-gray-400 group-hover:text-msblue transition-colors roadmap-toggle-icon"></i>
+                  </h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Reviewing ONNX network optimization, conversational LLM architectures, and edge systems.
+                  </p>
+                  <div class="mt-4 pt-4 border-t border-gray-200/50 dark:border-white/5 hidden roadmap-extra">
+                    <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                      Resolves production deployment speed and embedded system runtime concerns.
+                    </p>
+                  </div>
+                </div>
+                <div class="w-full md:w-[45%] hidden md:block"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horizontal scroll milestones road -->
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <p class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Milestone Timeline</p>
+          </div>
+          <div class="overflow-x-auto pb-8 pt-4">
+            <div class="flex space-x-6 min-w-[1000px] px-4">
+              <!-- Semester 1 -->
+              <div class="flex-1 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 relative">
+                <span class="text-xs font-bold text-msblue tracking-wider block mb-2">Semester 1</span>
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2">Literature Review & Setup</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Conducting broad literature studies and establishing the core audio-text annotation schema.
+                </p>
+              </div>
+              <!-- Semester 2 -->
+              <div class="flex-1 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 relative">
+                <span class="text-xs font-bold text-msblue tracking-wider block mb-2">Semester 2</span>
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2">Dataset Collection</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Gathering Swahili, English, and Sheng loneliness phrases from volunteer cohorts in local contexts.
+                </p>
+              </div>
+              <!-- Semester 3 -->
+              <div class="flex-1 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 relative">
+                <span class="text-xs font-bold text-msblue tracking-wider block mb-2">Semester 3</span>
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2">Model Development</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Training and testing audio-text classification algorithms with multimodal deep neural nets.
+                </p>
+              </div>
+              <!-- Semester 4 -->
+              <div class="flex-1 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 relative">
+                <span class="text-xs font-bold text-msblue tracking-wider block mb-2">Semester 4</span>
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2">Intervention Dialogue Engine</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Building prompts and guardrails on Azure OpenAI models for conversational response strategies.
+                </p>
+              </div>
+              <!-- Semester 5 -->
+              <div class="flex-1 bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 relative">
+                <span class="text-xs font-bold text-msblue tracking-wider block mb-2">Semester 5</span>
+                <h4 class="font-bold text-gray-900 dark:text-white mb-2">Deployment & Validation</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                  Deploying compressed model ONNX runtimes onto mobile devices and running real-world trials.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 px-6 md:px-12 bg-white dark:bg-msdark transition-colors duration-300">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Project Leadership</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Research Leadership & Developers</p>
+        </div>
+
+        <!-- Leaders Grid -->
+        <div class="mb-16">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-6 text-center">Masters Leadership (MSc Candidates)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Leader 1 -->
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 text-center hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-msblue to-mscyan p-1 mx-auto mb-6 flex items-center justify-center">
+                  <div class="w-full h-full rounded-full bg-white dark:bg-msdark flex items-center justify-center overflow-hidden">
+                    <i data-lucide="user" class="w-12 h-12 text-msblue"></i>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white">Elizabeth</h4>
+                <p class="text-xs font-bold text-msblue uppercase tracking-widest mt-1 mb-4">Data Lead</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light mb-6">
+                  Elizabeth directs the ethical collection pipelines, semantic metadata annotations, and clinical scale mappings.
+                </p>
+              </div>
+              <div class="flex items-center justify-center space-x-4 border-t border-gray-100 dark:border-white/5 pt-4">
+                <a href="#" class="text-gray-400 hover:text-msblue transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-msblue transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+              </div>
+            </div>
+            <!-- Leader 2 -->
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 text-center hover:shadow-lg transition-all duration-300 flex flex-col justify-between" style="transition-delay: 0.1s">
+              <div>
+                <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-msblue to-mscyan p-1 mx-auto mb-6 flex items-center justify-center">
+                  <div class="w-full h-full rounded-full bg-white dark:bg-msdark flex items-center justify-center overflow-hidden">
+                    <i data-lucide="user" class="w-12 h-12 text-msblue"></i>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white">Newton</h4>
+                <p class="text-xs font-bold text-msblue uppercase tracking-widest mt-1 mb-4">Detection Lead</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light mb-6">
+                  Newton manages acoustics feature models, BERT text classifiers, and multi-modal neural fusion networks.
+                </p>
+              </div>
+              <div class="flex items-center justify-center space-x-4 border-t border-gray-100 dark:border-white/5 pt-4">
+                <a href="#" class="text-gray-400 hover:text-msblue transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-msblue transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+              </div>
+            </div>
+            <!-- Leader 3 -->
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5 text-center hover:shadow-lg transition-all duration-300 flex flex-col justify-between" style="transition-delay: 0.2s">
+              <div>
+                <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-msblue to-mscyan p-1 mx-auto mb-6 flex items-center justify-center">
+                  <div class="w-full h-full rounded-full bg-white dark:bg-msdark flex items-center justify-center overflow-hidden">
+                    <i data-lucide="user" class="w-12 h-12 text-msblue"></i>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white">Joseph</h4>
+                <p class="text-xs font-bold text-msblue uppercase tracking-widest mt-1 mb-4">Deployment Lead</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light mb-6">
+                  Joseph manages ONNX compilation, mobile SDK development, and Azure IoT Hub edge configurations.
+                </p>
+              </div>
+              <div class="flex items-center justify-center space-x-4 border-t border-gray-100 dark:border-white/5 pt-4">
+                <a href="#" class="text-gray-400 hover:text-msblue transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-msblue transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Developers Grid -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-6 text-center">Development & Research Team</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Mongare Shem</h4>
+              <p class="text-xs font-semibold text-msblue mb-3">Model Architect</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                Focuses on deep learning architectures, multimodal fusion techniques, and model quantization.
+              </p>
+            </div>
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Marc Tiro</h4>
+              <p class="text-xs font-semibold text-msblue mb-3">Cloud Engineer</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                Manages cloud infrastructure, Azure OpenAI pipelines, API scalability, and databases.
+              </p>
+            </div>
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Jay Shanice</h4>
+              <p class="text-xs font-semibold text-msblue mb-3">Data Analyst</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                Conducts statistical evaluations, model validation trials, and ensures bias-free predictions.
+              </p>
+            </div>
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Maxwell Munene</h4>
+              <p class="text-xs font-semibold text-msblue mb-3">Research Assistant</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                Focuses on text embeddings, annotation pipelines, and vocabulary scaling for local slang.
+              </p>
+            </div>
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Bramwel Wanjala</h4>
+              <p class="text-xs font-semibold text-msblue mb-3">Edge Developer</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                Maintains mobile libraries, managing ONNX runtime integrations on Android/iOS environments.
+              </p>
+            </div>
+            <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Wayne Otieno</h4>
+              <p class="text-xs font-semibold text-msblue mb-3">Research Assistant</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                Coordinates clinical dialogue mapping, CBT logic trees, and Azure OpenAI safety parameters.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-24 px-6 md:px-12 bg-gray-50 dark:bg-mscharcoal transition-colors duration-300">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Scientific Outputs</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Recent Publications</p>
+          
+          <!-- Publications Filter -->
+          <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
+            <button class="pub-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-msblue text-white shadow-md shadow-msblue/20" data-filter="all">All</button>
+            <button class="pub-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300" data-filter="2026">2026</button>
+            <button class="pub-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300" data-filter="2025">2025</button>
+            <button class="pub-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300" data-filter="forthcoming">Forthcoming</button>
+          </div>
+        </div>
+
+        <!-- Publications Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- Pub 1 -->
+          <div class="reveal-on-scroll bg-white dark:bg-msdark p-8 rounded-2xl border border-gray-200 dark:border-white/10 hover:shadow-lg transition-all duration-300 pub-card" data-year="2026">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded bg-msblue/15 text-msblue text-xs font-bold uppercase">2026</span>
+              <span class="text-xs text-gray-400">IEEE Trans. Affective Computing</span>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+              Multimodal Loneliness Classification Using Acoustic Prosody and Sheng Code-Switched Transcripts
+            </h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-6 font-light">
+              Newton, Elizabeth, Joseph, Mongare Shem.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/5">
+              <span class="text-xs font-semibold text-accentgreen">Published</span>
+              <div class="flex space-x-2">
+                <a href="#" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-semibold rounded-lg flex items-center space-x-1"><i data-lucide="download" class="w-3.5 h-3.5"></i> <span>PDF</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pub 2 -->
+          <div class="reveal-on-scroll bg-white dark:bg-msdark p-8 rounded-2xl border border-gray-200 dark:border-white/10 hover:shadow-lg transition-all duration-300 pub-card" data-year="2025">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded bg-msblue/15 text-msblue text-xs font-bold uppercase">2025</span>
+              <span class="text-xs text-gray-400">Interspeech 2025</span>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+              Design and Evaluation of Culturally Grounded Dialogue Models for Emotional AI Interventions
+            </h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-6 font-light">
+              Wayne Otieno, Marc Tiro, Jay Shanice, Dr. M. Mongare.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/5">
+              <span class="text-xs font-semibold text-accentgreen">Published</span>
+              <div class="flex space-x-2">
+                <a href="#" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-semibold rounded-lg flex items-center space-x-1"><i data-lucide="download" class="w-3.5 h-3.5"></i> <span>PDF</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources / Downloads Section -->
+    <section class="py-24 px-6 md:px-12 bg-white dark:bg-msdark border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Downloads & Repos</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Project Resources</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <a href="loneliness_phrases_dataset.xlsx" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
+              <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 dark:text-white mb-1">Phrases Dataset (.xlsx)</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light mb-4">Complete 200-phrase dataset containing Swahili, Sheng, and English transcripts with metadata.</p>
+              <span class="text-xs text-msblue font-semibold flex items-center">Download Excel <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 ml-1"></i></span>
+            </div>
+          </a>
+
+          <a href="loneliness_phrases_dataset.md" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
+              <i data-lucide="file-text" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 dark:text-white mb-1">Phrases Dataset (.md)</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light mb-4">Complete 200-phrase dataset formatted in clean Markdown table structures for NLP projects.</p>
+              <span class="text-xs text-msblue font-semibold flex items-center">View Markdown <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 ml-1"></i></span>
+            </div>
+          </a>
+
+          <a href="companion_ai_research_poster.jpg" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
+              <i data-lucide="image" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 dark:text-white mb-1">Research Poster (JPG)</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400 font-light mb-4">Official CompanionAI Research Programme poster presenting architecture, objectives, and team.</p>
+              <span class="text-xs text-msblue font-semibold flex items-center">View Poster <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 ml-1"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 md:px-12 bg-white dark:bg-msdark transition-colors duration-300">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto">
+          <!-- Contact Info -->
+          <div class="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <h2 class="text-xs font-bold text-msblue tracking-widest uppercase mb-3">Get in Touch</h2>
+              <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">Contact the Programme</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-8">
+                Interested in collaborating, accessing our research datasets, or learning more about our Azure AI integration? Send us a message.
+              </p>
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+                  <i data-lucide="mail" class="w-5 h-5 text-msblue"></i>
+                  <span class="text-sm font-medium">research@companionai.edu</span>
+                </div>
+                <div class="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-msblue"></i>
+                  <span class="text-sm font-medium">Nairobi AI Research Hub, Kenya</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:col-span-7 bg-gray-50 dark:bg-mscharcoal p-8 rounded-2xl border border-gray-200/50 dark:border-white/5">
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="form-name" class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Name</label>
+                  <input type="text" id="form-name" required class="w-full px-4 py-3 bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 rounded-lg focus:outline-none focus:border-msblue text-sm">
+                </div>
+                <div>
+                  <label for="form-email" class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Email</label>
+                  <input type="email" id="form-email" required class="w-full px-4 py-3 bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 rounded-lg focus:outline-none focus:border-msblue text-sm">
+                </div>
+              </div>
+              <div>
+                <label for="form-subject" class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Institution / Subject</label>
+                <input type="text" id="form-subject" required class="w-full px-4 py-3 bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 rounded-lg focus:outline-none focus:border-msblue text-sm">
+              </div>
+              <div>
+                <label for="form-message" class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Message</label>
+                <textarea id="form-message" rows="5" required class="w-full px-4 py-3 bg-white dark:bg-msdark border border-gray-200 dark:border-white/10 rounded-lg focus:outline-none focus:border-msblue text-sm"></textarea>
+              </div>
+              <button type="submit" class="w-full px-6 py-3.5 bg-msblue hover:bg-msblue/90 text-white font-medium rounded-lg shadow-md shadow-msblue/15 transition-all text-sm">Send Message</button>
+            </form>
+            <div id="form-feedback" class="mt-4 text-sm hidden font-medium"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-mscharcoal border-t border-gray-200 dark:border-white/5 py-12 px-6 md:px-12 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-msblue flex items-center justify-center text-white">
+            <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+          </div>
+          <span class="font-extrabold text-md tracking-tight text-gray-900 dark:text-white">CompanionAI</span>
+        </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+          Building ethically collected dialogue corpora and optimized ML runtimes to combat isolation. Partnered with Microsoft Azure.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Quick Navigation</h4>
+        <ul class="space-y-2 text-xs font-medium">
+          <li><a href="#home" class="hover:text-msblue transition-colors">Home</a></li>
+          <li><a href="#research-hub" class="hover:text-msblue transition-colors">Research Hub</a></li>
+          <li><a href="#team" class="hover:text-msblue transition-colors">Team</a></li>
+          <li><a href="#publications" class="hover:text-msblue transition-colors">Publications</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Downloads</h4>
+        <ul class="space-y-2 text-xs font-medium">
+          <li><a href="loneliness_phrases_dataset.xlsx" class="hover:text-msblue transition-colors">Excel Dataset (.xlsx)</a></li>
+          <li><a href="loneliness_phrases_dataset.md" class="hover:text-msblue transition-colors">Markdown Dataset (.md)</a></li>
+          <li><a href="companion_ai_research_poster.jpg" class="hover:text-msblue transition-colors">Programme Poster</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Legal</h4>
+        <ul class="space-y-2 text-xs font-medium">
+          <li><a href="#" class="hover:text-msblue transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-msblue transition-colors">Terms of Research</a></li>
+          <li><a href="#" class="hover:text-msblue transition-colors">Ethical Guidelines</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto pt-8 border-t border-gray-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400">
+      <span>© 2026 CompanionAI Research Programme. All rights reserved.</span>
+      <span class="mt-2 sm:mt-0 flex items-center"><i data-lucide="shield" class="w-3.5 h-3.5 mr-1 text-msblue"></i> Human-Centered and Ethically Approved</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 5 Cool Theme Colors Selector Logic
+    const colorPickers = document.querySelectorAll('.color-picker-btn');
+    const htmlElement = document.documentElement;
+
+    colorPickers.forEach(picker => {
+      picker.addEventListener('click', () => {
+        const selectedColor = picker.getAttribute('data-color');
+        
+        // Remove existing theme classes from HTML
+        htmlElement.classList.remove('theme-blue', 'theme-coffee', 'theme-purple', 'theme-orange', 'theme-green');
+        
+        // Add new theme class
+        htmlElement.classList.add(`theme-${selectedColor}`);
+        
+        // Save choice
+        localStorage.setItem('theme-color', selectedColor);
+
+        // Update picker active style
+        colorPickers.forEach(p => p.classList.remove('ring-2', 'ring-msblue', 'scale-110'));
+        picker.classList.add('ring-2', 'ring-msblue', 'scale-110');
+
+        // Force redraw particle connections with new primary color
+        initParticles();
+      });
+    });
+
+    // Restore Theme Color on load
+    const savedThemeColor = localStorage.getItem('theme-color') || 'blue';
+    htmlElement.classList.remove('theme-blue');
+    htmlElement.classList.add(`theme-${savedThemeColor}`);
+    colorPickers.forEach(p => {
+      if (p.getAttribute('data-color') === savedThemeColor) {
+        p.classList.add('ring-2', 'ring-msblue', 'scale-110');
+      } else {
+        p.classList.remove('ring-2', 'ring-msblue', 'scale-110');
+      }
+    });
+
+    // Dark/Light Theme System
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    if (localStorage.getItem('theme') === 'light') {
+      htmlElement.classList.remove('dark');
+    }
+
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const scrollProgress = document.getElementById('scroll-progress');
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.pageYOffset / totalHeight) * 100;
+      scrollProgress.style.width = `${progress}%`;
+
+      const header = document.getElementById('main-header');
+      if (window.pageYOffset > 50) {
+        header.classList.add('py-2', 'shadow-md');
+        header.classList.remove('py-4');
+      } else {
+        header.classList.add('py-4');
+        header.classList.remove('py-2', 'shadow-md');
+      }
+    });
+
+    // Mobile Menu Drawer Toggle
+    const mobileMenuTrigger = document.getElementById('mobile-menu-trigger');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    // Open/Close drawer
+    function openMobileMenu() {
+      mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+      mobileMenu.querySelector('.absolute').classList.remove('translate-x-full');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenu.querySelector('.absolute').classList.add('translate-x-full');
+    }
+
+    mobileMenuTrigger.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMobileMenu();
+    });
+    mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+    // Research Hub Sub-page Switcher Logic
+    const hubTabBtns = document.querySelectorAll('.hub-tab-btn');
+    const workspacePanels = document.querySelectorAll('.workspace-panel');
+
+    function switchHubTab(targetPanelId) {
+      // Hide all sub-page panels
+      workspacePanels.forEach(panel => panel.classList.add('hidden'));
+      
+      // Show target sub-page panel
+      const targetPanel = document.getElementById(targetPanelId);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+      }
+
+      // Update button visual states
+      hubTabBtns.forEach(btn => {
+        if (btn.getAttribute('data-target') === targetPanelId) {
+          btn.classList.remove('text-gray-500', 'hover:text-gray-900', 'dark:text-gray-400', 'dark:hover:text-white', 'border-transparent');
+          btn.classList.add('border-msblue', 'text-msblue');
+        } else {
+          btn.classList.remove('border-msblue', 'text-msblue');
+          btn.classList.add('text-gray-500', 'hover:text-gray-900', 'dark:text-gray-400', 'dark:hover:text-white', 'border-transparent');
+        }
+      });
+
+      // If user is scrolled below the hub tab bar, scroll back to the hub tab bar position
+      const hubElement = document.getElementById('research-hub');
+      const offsetTop = hubElement.offsetTop - 72; // height of main navigation header
+      if (window.pageYOffset > offsetTop) {
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    }
+
+    hubTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchHubTab(btn.getAttribute('data-target'));
+      });
+    });
+
+    // Scroll Reveal implementation
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Animated Statistics Counters
+    const statCounters = document.querySelectorAll('.stat-counter');
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-target'));
+          let count = 0;
+          const duration = 2000;
+          const step = target / (duration / 16);
+
+          const counter = setInterval(() => {
+            count += step;
+            if (count >= target) {
+              el.innerText = target;
+              clearInterval(counter);
+            } else {
+              el.innerText = Math.floor(count);
+            }
+          }, 16);
+
+          observer.unobserve(el);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    statCounters.forEach(counter => countObserver.observe(counter));
+
+    // Streams Accordion
+    const accordionBtns = document.querySelectorAll('.stream-accordion-btn');
+    accordionBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('.accordion-icon');
+
+        if (content.classList.contains('hidden')) {
+          content.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          content.classList.add('hidden');
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    // Roadmap card toggle
+    const roadmapCards = document.querySelectorAll('.roadmap-card');
+    roadmapCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const extra = card.querySelector('.roadmap-extra');
+        const icon = card.querySelector('.roadmap-toggle-icon');
+
+        if (extra.classList.contains('hidden')) {
+          extra.classList.remove('hidden');
+          icon.setAttribute('data-lucide', 'minus-circle');
+          lucide.createIcons();
+        } else {
+          extra.classList.add('hidden');
+          icon.setAttribute('data-lucide', 'plus-circle');
+          lucide.createIcons();
+        }
+      });
+    });
+
+    // Publications Filter
+    const filterBtns = document.querySelectorAll('.pub-filter-btn');
+    const pubCards = document.querySelectorAll('.pub-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('bg-msblue', 'text-white', 'shadow-md', 'shadow-msblue/20'));
+        filterBtns.forEach(b => b.classList.add('bg-white', 'dark:bg-msdark', 'border', 'border-gray-200', 'dark:border-white/10', 'text-gray-700', 'dark:text-gray-300'));
+        btn.classList.remove('bg-white', 'dark:bg-msdark', 'border', 'border-gray-200', 'dark:border-white/10', 'text-gray-700', 'dark:text-gray-300');
+        btn.classList.add('bg-msblue', 'text-white', 'shadow-md', 'shadow-msblue/20');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        pubCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-year') === filterValue) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Contact Form Submission Mockup
+    const contactForm = document.getElementById('contact-form');
+    const formFeedback = document.getElementById('form-feedback');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formFeedback.classList.remove('hidden', 'text-red-500', 'text-green-500');
+      formFeedback.innerText = "Submitting message...";
+
+      setTimeout(() => {
+        formFeedback.classList.add('text-green-500');
+        formFeedback.innerText = "Thank you! Your message was submitted successfully.";
+        contactForm.reset();
+      }, 1500);
+    });
+
+    // Search Engine Overlay
+    const searchTrigger = document.getElementById('search-trigger');
+    const searchClose = document.getElementById('search-close');
+    const searchOverlay = document.getElementById('search-overlay');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    const searchableDatabase = [
+      { title: "About the Project", text: "Background, social isolation stats, gap analysis, and clinical research context.", link: "hub-about" },
+      { title: "Project Goals", text: "Dataset curation, machine learning, safety guardrails, and embedded runtimes.", link: "hub-goals" },
+      { title: "System Engineering", text: "Data layer, AI layer, decision classifications, and dialogue interventions.", link: "hub-system" },
+      { title: "Enterprise Cloud", text: "Azure SQL databases, Azure machine learning models, and GitHub integrations.", link: "hub-cloud" },
+      { title: "Academic Streams", text: "Active research streams led by Elizabeth, Newton, Wayne, and Joseph.", link: "hub-streams" },
+      { title: "Academic Roadmap", text: "Foundation literature review, milestones, and semester timeline details.", link: "hub-roadmap" }
+    ];
+
+    function openSearch() {
+      searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      searchOverlay.querySelector('.scale-95').classList.remove('scale-95');
+      searchInput.focus();
+    }
+
+    function closeSearch() {
+      searchOverlay.classList.add('opacity-0', 'pointer-events-none');
+      searchOverlay.querySelector('.transform').classList.add('scale-95');
+      searchInput.value = "";
+      searchResults.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400">Type something to search...</p>';
+    }
+
+    searchTrigger.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) closeSearch();
+    });
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      if (query === "") {
+        searchResults.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400">Type something to search...</p>';
+        return;
+      }
+
+      const matches = searchableDatabase.filter(item => 
+        item.title.toLowerCase().includes(query) || item.text.toLowerCase().includes(query)
+      );
+
+      if (matches.length === 0) {
+        searchResults.innerHTML = '<p class="text-sm text-red-500 font-medium">No results found. Try another search query.</p>';
+      } else {
+        searchResults.innerHTML = matches.map(item => `
+          <button class="block w-full text-left p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors" onclick="switchHubTab('${item.link}'); closeSearch(); document.getElementById('research-hub').scrollIntoView({behavior: 'smooth'});">
+            <h5 class="text-sm font-bold text-msblue dark:text-mscyan mb-1">${item.title}</h5>
+            <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-light">${item.text}</p>
+          </button>
+        `).join("");
+      }
+    });
+
+    // Particle Background Canvas implementation
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 2 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        
+        const activeThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+        ctx.fillStyle = htmlElement.classList.contains('dark') ? `${activeThemeColor}26` : `${activeThemeColor}14`;
+        ctx.fill();
+      }
+    }
+
+    // Draw nodes
+    function initParticles() {
+      particles = [];
+      const particleCount = Math.min(Math.floor(window.innerWidth / 12), 100);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      // Draw connections
+      ctx.beginPath();
+      const maxDistance = 120;
+      const activeThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+          if (dist < maxDistance) {
+            const alphaVal = Math.floor((1 - dist / maxDistance) * 25.5);
+            const hexAlpha = alphaVal.toString(16).padStart(2, '0');
+            ctx.strokeStyle = `${activeThemeColor}${hexAlpha}`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+          }
+        }
+      }
+      ctx.stroke();
+
+      requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+    window.addEventListener('resize', initParticles);
+  </script>
+</body>
+</html>
+
+```
