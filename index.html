@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth theme-blue">
 <head>
@@ -35,154 +34,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Custom Styles for Theme Switching & Research Hub -->
-  <style>
-    /* CSS Variables for Dynamic Color Theming */
-    :root {
-      --primary: #0078D4;
-      --primary-glow: rgba(0, 120, 212, 0.15);
-      --primary-border: rgba(0, 120, 212, 0.3);
-    }
-    .theme-blue {
-      --primary: #0078D4;
-      --primary-glow: rgba(0, 120, 212, 0.15);
-      --primary-border: rgba(0, 120, 212, 0.3);
-    }
-    .theme-coffee {
-      --primary: #725C42;
-      --primary-glow: rgba(114, 92, 66, 0.15);
-      --primary-border: rgba(114, 92, 66, 0.3);
-    }
-    .theme-purple {
-      --primary: #8660A9;
-      --primary-glow: rgba(134, 96, 169, 0.15);
-      --primary-border: rgba(134, 96, 169, 0.3);
-    }
-    .theme-orange {
-      --primary: #D83B01;
-      --primary-glow: rgba(216, 59, 1, 0.15);
-      --primary-border: rgba(216, 59, 1, 0.3);
-    }
-    .theme-green {
-      --primary: #107C41;
-      --primary-glow: rgba(16, 124, 65, 0.15);
-      --primary-border: rgba(16, 124, 65, 0.3);
-    }
-
-    /* Override Tailwind primary color classes dynamically */
-    .text-msblue {
-      color: var(--primary) !important;
-    }
-    .bg-msblue {
-      background-color: var(--primary) !important;
-    }
-    .border-msblue {
-      border-color: var(--primary) !important;
-    }
-    .border-b-msblue {
-      border-bottom-color: var(--primary) !important;
-    }
-    .bg-msblue\/10 {
-      background-color: var(--primary-glow) !important;
-    }
-    .border-msblue\/20 {
-      border-color: var(--primary-border) !important;
-    }
-    .border-msblue\/10 {
-      border-color: var(--primary-glow) !important;
-    }
-    .hover\:border-msblue\/30:hover {
-      border-color: var(--primary-border) !important;
-    }
-    .shadow-msblue\/20 {
-      box-shadow: 0 4px 14px 0 var(--primary-glow) !important;
-    }
-    .shadow-msblue\/25 {
-      box-shadow: 0 4px 14px 0 var(--primary-glow) !important;
-    }
-
-    /* Hide horizontal scrollbar but keep scroll functionality */
-    .scrollbar-none::-webkit-scrollbar {
-      display: none;
-    }
-    .scrollbar-none {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Fluent Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.05);
-    }
-    .dark ::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.02);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 4px;
-    }
-    .dark ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 0, 0, 0.3);
-    }
-    .dark ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Fluent Design Glassmorphism */
-    .acrylic-light {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    .acrylic-dark {
-      background: rgba(26, 26, 26, 0.75);
-      backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    /* Animated background gradient */
-    @keyframes gradient-flow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .animate-gradient {
-      background-size: 200% 200%;
-      animation: gradient-flow 15s ease infinite;
-    }
-
-    /* Sub-page Switch Fading Animation */
-    .workspace-panel {
-      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Floating card animation */
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-  </style>
+  <!-- Link to External Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-mscharcoal dark:text-gray-100 font-sans transition-colors duration-300 antialiased">
 
@@ -190,16 +43,16 @@
   <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-msblue z-50 transition-all duration-100" style="width: 0%"></div>
 
   <!-- Header / Navigation -->
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-4 px-6 md:px-12 bg-white/80 dark:bg-mscharcoal/80 backdrop-blur-md border-b border-gray-200/50 dark:border-white/5">
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-4 px-4 sm:px-6 md:px-12 bg-white/80 dark:bg-mscharcoal/80 backdrop-blur-md border-b border-gray-200/50 dark:border-white/5">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <!-- Logo -->
-      <a href="#" class="flex items-center space-x-3 group">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-msblue to-mscyan flex items-center justify-center text-white shadow-lg shadow-msblue/20">
-          <i data-lucide="brain-circuit" class="w-6 h-6 animate-pulse"></i>
+      <a href="#" class="flex items-center space-x-2 sm:space-x-3 group">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-tr from-msblue to-mscyan flex items-center justify-center text-white shadow-lg shadow-msblue/20">
+          <i data-lucide="brain-circuit" class="w-5 h-5 sm:w-6 sm:h-6 animate-pulse"></i>
         </div>
         <div class="flex flex-col">
-          <span class="font-extrabold text-lg tracking-tight leading-none text-gray-900 dark:text-white group-hover:text-msblue transition-colors">CompanionAI</span>
-          <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Research Programme</span>
+          <span class="font-extrabold text-base sm:text-lg tracking-tight leading-none text-gray-900 dark:text-white group-hover:text-msblue transition-colors">CompanionAI</span>
+          <span class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 font-medium hidden sm:block">Research Programme</span>
         </div>
       </a>
 
@@ -213,35 +66,35 @@
       </nav>
 
       <!-- Controls: Color Theme Switcher & Search & Mode -->
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-1 sm:space-x-3">
         <!-- 5 Cool Theme Colors Picker -->
-        <div class="flex items-center space-x-1.5 bg-gray-100 dark:bg-white/5 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-white/5">
+        <div class="flex items-center space-x-1 sm:space-x-1.5 bg-gray-100 dark:bg-white/5 px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded-lg border border-gray-200 dark:border-white/5">
           <!-- Blue -->
-          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#0078D4] border-2 border-white dark:border-mscharcoal ring-2 ring-msblue transition-transform" data-color="blue" title="Azure Blue"></button>
+          <button class="color-picker-btn w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#0078D4] border-2 border-white dark:border-mscharcoal ring-2 ring-msblue transition-transform" data-color="blue" title="Azure Blue"></button>
           <!-- Coffee / White Blend -->
-          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#725C42] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="coffee" title="Coffee Blend"></button>
+          <button class="color-picker-btn w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#725C42] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="coffee" title="Coffee Blend"></button>
           <!-- Purple -->
-          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#8660A9] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="purple" title="Amethyst Purple"></button>
+          <button class="color-picker-btn w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#8660A9] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="purple" title="Amethyst Purple"></button>
           <!-- Orange -->
-          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#D83B01] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="orange" title="Sunset Orange"></button>
+          <button class="color-picker-btn w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#D83B01] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="orange" title="Sunset Orange"></button>
           <!-- Green -->
-          <button class="color-picker-btn w-4 h-4 rounded-full bg-[#107C41] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="green" title="Forest Green"></button>
+          <button class="color-picker-btn w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#107C41] border-2 border-white dark:border-mscharcoal hover:scale-110 transition-transform" data-color="green" title="Forest Green"></button>
         </div>
 
         <!-- Global Search Button -->
-        <button id="search-trigger" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Search site">
-          <i data-lucide="search" class="w-5 h-5"></i>
+        <button id="search-trigger" class="p-1.5 sm:p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Search site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
         </button>
 
         <!-- Theme Toggle -->
-        <button id="theme-toggle" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Toggle theme">
-          <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
-          <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+        <button id="theme-toggle" class="p-1.5 sm:p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 sm:w-5 sm:h-5 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 sm:w-5 sm:h-5 block dark:hidden"></i>
         </button>
 
         <!-- Mobile Menu Trigger -->
-        <button id="mobile-menu-trigger" class="xl:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Open menu">
-          <i data-lucide="menu" class="w-6 h-6"></i>
+        <button id="mobile-menu-trigger" class="xl:hidden p-1.5 sm:p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400" aria-label="Open menu">
+          <i data-lucide="menu" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
       </div>
     </div>
@@ -1086,7 +939,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <a href="loneliness_phrases_dataset.xlsx" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
+          <a href="assets/loneliness_phrases_dataset.xlsx" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
             <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
               <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
             </div>
@@ -1097,7 +950,7 @@
             </div>
           </a>
 
-          <a href="loneliness_phrases_dataset.md" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
+          <a href="assets/loneliness_phrases_dataset.md" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
             <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
               <i data-lucide="file-text" class="w-6 h-6"></i>
             </div>
@@ -1108,7 +961,7 @@
             </div>
           </a>
 
-          <a href="companion_ai_research_poster.jpg" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
+          <a href="assets/companion_ai_research_poster.jpg" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
             <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
               <i data-lucide="image" class="w-6 h-6"></i>
             </div>
@@ -1206,9 +1059,9 @@
       <div>
         <h4 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Downloads</h4>
         <ul class="space-y-2 text-xs font-medium">
-          <li><a href="loneliness_phrases_dataset.xlsx" class="hover:text-msblue transition-colors">Excel Dataset (.xlsx)</a></li>
-          <li><a href="loneliness_phrases_dataset.md" class="hover:text-msblue transition-colors">Markdown Dataset (.md)</a></li>
-          <li><a href="companion_ai_research_poster.jpg" class="hover:text-msblue transition-colors">Programme Poster</a></li>
+          <li><a href="assets/loneliness_phrases_dataset.xlsx" class="hover:text-msblue transition-colors">Excel Dataset (.xlsx)</a></li>
+          <li><a href="assets/loneliness_phrases_dataset.md" class="hover:text-msblue transition-colors">Markdown Dataset (.md)</a></li>
+          <li><a href="assets/companion_ai_research_poster.jpg" class="hover:text-msblue transition-colors">Programme Poster</a></li>
         </ul>
       </div>
 
@@ -1228,409 +1081,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
-    // 5 Cool Theme Colors Selector Logic
-    const colorPickers = document.querySelectorAll('.color-picker-btn');
-    const htmlElement = document.documentElement;
-
-    colorPickers.forEach(picker => {
-      picker.addEventListener('click', () => {
-        const selectedColor = picker.getAttribute('data-color');
-        
-        // Remove existing theme classes from HTML
-        htmlElement.classList.remove('theme-blue', 'theme-coffee', 'theme-purple', 'theme-orange', 'theme-green');
-        
-        // Add new theme class
-        htmlElement.classList.add(`theme-${selectedColor}`);
-        
-        // Save choice
-        localStorage.setItem('theme-color', selectedColor);
-
-        // Update picker active style
-        colorPickers.forEach(p => p.classList.remove('ring-2', 'ring-msblue', 'scale-110'));
-        picker.classList.add('ring-2', 'ring-msblue', 'scale-110');
-
-        // Force redraw particle connections with new primary color
-        initParticles();
-      });
-    });
-
-    // Restore Theme Color on load
-    const savedThemeColor = localStorage.getItem('theme-color') || 'blue';
-    htmlElement.classList.remove('theme-blue');
-    htmlElement.classList.add(`theme-${savedThemeColor}`);
-    colorPickers.forEach(p => {
-      if (p.getAttribute('data-color') === savedThemeColor) {
-        p.classList.add('ring-2', 'ring-msblue', 'scale-110');
-      } else {
-        p.classList.remove('ring-2', 'ring-msblue', 'scale-110');
-      }
-    });
-
-    // Dark/Light Theme System
-    const themeToggleBtn = document.getElementById('theme-toggle');
-
-    themeToggleBtn.addEventListener('click', () => {
-      if (htmlElement.classList.contains('dark')) {
-        htmlElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        htmlElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-
-    if (localStorage.getItem('theme') === 'light') {
-      htmlElement.classList.remove('dark');
-    }
-
-    // Scroll Progress Indicator
-    window.addEventListener('scroll', () => {
-      const scrollProgress = document.getElementById('scroll-progress');
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.pageYOffset / totalHeight) * 100;
-      scrollProgress.style.width = `${progress}%`;
-
-      const header = document.getElementById('main-header');
-      if (window.pageYOffset > 50) {
-        header.classList.add('py-2', 'shadow-md');
-        header.classList.remove('py-4');
-      } else {
-        header.classList.add('py-4');
-        header.classList.remove('py-2', 'shadow-md');
-      }
-    });
-
-    // Mobile Menu Drawer Toggle
-    const mobileMenuTrigger = document.getElementById('mobile-menu-trigger');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-    // Open/Close drawer
-    function openMobileMenu() {
-      mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-      mobileMenu.querySelector('.absolute').classList.remove('translate-x-full');
-    }
-
-    function closeMobileMenu() {
-      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-      mobileMenu.querySelector('.absolute').classList.add('translate-x-full');
-    }
-
-    mobileMenuTrigger.addEventListener('click', openMobileMenu);
-    mobileMenuClose.addEventListener('click', closeMobileMenu);
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMobileMenu();
-    });
-    mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-
-    // Research Hub Sub-page Switcher Logic
-    const hubTabBtns = document.querySelectorAll('.hub-tab-btn');
-    const workspacePanels = document.querySelectorAll('.workspace-panel');
-
-    function switchHubTab(targetPanelId) {
-      // Hide all sub-page panels
-      workspacePanels.forEach(panel => panel.classList.add('hidden'));
-      
-      // Show target sub-page panel
-      const targetPanel = document.getElementById(targetPanelId);
-      if (targetPanel) {
-        targetPanel.classList.remove('hidden');
-      }
-
-      // Update button visual states
-      hubTabBtns.forEach(btn => {
-        if (btn.getAttribute('data-target') === targetPanelId) {
-          btn.classList.remove('text-gray-500', 'hover:text-gray-900', 'dark:text-gray-400', 'dark:hover:text-white', 'border-transparent');
-          btn.classList.add('border-msblue', 'text-msblue');
-        } else {
-          btn.classList.remove('border-msblue', 'text-msblue');
-          btn.classList.add('text-gray-500', 'hover:text-gray-900', 'dark:text-gray-400', 'dark:hover:text-white', 'border-transparent');
-        }
-      });
-
-      // If user is scrolled below the hub tab bar, scroll back to the hub tab bar position
-      const hubElement = document.getElementById('research-hub');
-      const offsetTop = hubElement.offsetTop - 72; // height of main navigation header
-      if (window.pageYOffset > offsetTop) {
-        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-      }
-    }
-
-    hubTabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchHubTab(btn.getAttribute('data-target'));
-      });
-    });
-
-    // Scroll Reveal implementation
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // Animated Statistics Counters
-    const statCounters = document.querySelectorAll('.stat-counter');
-    const countObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.getAttribute('data-target'));
-          let count = 0;
-          const duration = 2000;
-          const step = target / (duration / 16);
-
-          const counter = setInterval(() => {
-            count += step;
-            if (count >= target) {
-              el.innerText = target;
-              clearInterval(counter);
-            } else {
-              el.innerText = Math.floor(count);
-            }
-          }, 16);
-
-          observer.unobserve(el);
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    statCounters.forEach(counter => countObserver.observe(counter));
-
-    // Streams Accordion
-    const accordionBtns = document.querySelectorAll('.stream-accordion-btn');
-    accordionBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const content = btn.nextElementSibling;
-        const icon = btn.querySelector('.accordion-icon');
-
-        if (content.classList.contains('hidden')) {
-          content.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-        } else {
-          content.classList.add('hidden');
-          icon.style.transform = 'rotate(0deg)';
-        }
-      });
-    });
-
-    // Roadmap card toggle
-    const roadmapCards = document.querySelectorAll('.roadmap-card');
-    roadmapCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const extra = card.querySelector('.roadmap-extra');
-        const icon = card.querySelector('.roadmap-toggle-icon');
-
-        if (extra.classList.contains('hidden')) {
-          extra.classList.remove('hidden');
-          icon.setAttribute('data-lucide', 'minus-circle');
-          lucide.createIcons();
-        } else {
-          extra.classList.add('hidden');
-          icon.setAttribute('data-lucide', 'plus-circle');
-          lucide.createIcons();
-        }
-      });
-    });
-
-    // Publications Filter
-    const filterBtns = document.querySelectorAll('.pub-filter-btn');
-    const pubCards = document.querySelectorAll('.pub-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('bg-msblue', 'text-white', 'shadow-md', 'shadow-msblue/20'));
-        filterBtns.forEach(b => b.classList.add('bg-white', 'dark:bg-msdark', 'border', 'border-gray-200', 'dark:border-white/10', 'text-gray-700', 'dark:text-gray-300'));
-        btn.classList.remove('bg-white', 'dark:bg-msdark', 'border', 'border-gray-200', 'dark:border-white/10', 'text-gray-700', 'dark:text-gray-300');
-        btn.classList.add('bg-msblue', 'text-white', 'shadow-md', 'shadow-msblue/20');
-
-        const filterValue = btn.getAttribute('data-filter');
-
-        pubCards.forEach(card => {
-          if (filterValue === 'all' || card.getAttribute('data-year') === filterValue) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    // Contact Form Submission Mockup
-    const contactForm = document.getElementById('contact-form');
-    const formFeedback = document.getElementById('form-feedback');
-
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      formFeedback.classList.remove('hidden', 'text-red-500', 'text-green-500');
-      formFeedback.innerText = "Submitting message...";
-
-      setTimeout(() => {
-        formFeedback.classList.add('text-green-500');
-        formFeedback.innerText = "Thank you! Your message was submitted successfully.";
-        contactForm.reset();
-      }, 1500);
-    });
-
-    // Search Engine Overlay
-    const searchTrigger = document.getElementById('search-trigger');
-    const searchClose = document.getElementById('search-close');
-    const searchOverlay = document.getElementById('search-overlay');
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-
-    const searchableDatabase = [
-      { title: "About the Project", text: "Background, social isolation stats, gap analysis, and clinical research context.", link: "hub-about" },
-      { title: "Project Goals", text: "Dataset curation, machine learning, safety guardrails, and embedded runtimes.", link: "hub-goals" },
-      { title: "System Engineering", text: "Data layer, AI layer, decision classifications, and dialogue interventions.", link: "hub-system" },
-      { title: "Enterprise Cloud", text: "Azure SQL databases, Azure machine learning models, and GitHub integrations.", link: "hub-cloud" },
-      { title: "Academic Streams", text: "Active research streams led by Elizabeth, Newton, Wayne, and Joseph.", link: "hub-streams" },
-      { title: "Academic Roadmap", text: "Foundation literature review, milestones, and semester timeline details.", link: "hub-roadmap" }
-    ];
-
-    function openSearch() {
-      searchOverlay.classList.remove('opacity-0', 'pointer-events-none');
-      searchOverlay.querySelector('.scale-95').classList.remove('scale-95');
-      searchInput.focus();
-    }
-
-    function closeSearch() {
-      searchOverlay.classList.add('opacity-0', 'pointer-events-none');
-      searchOverlay.querySelector('.transform').classList.add('scale-95');
-      searchInput.value = "";
-      searchResults.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400">Type something to search...</p>';
-    }
-
-    searchTrigger.addEventListener('click', openSearch);
-    searchClose.addEventListener('click', closeSearch);
-    searchOverlay.addEventListener('click', (e) => {
-      if (e.target === searchOverlay) closeSearch();
-    });
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase().trim();
-      if (query === "") {
-        searchResults.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400">Type something to search...</p>';
-        return;
-      }
-
-      const matches = searchableDatabase.filter(item => 
-        item.title.toLowerCase().includes(query) || item.text.toLowerCase().includes(query)
-      );
-
-      if (matches.length === 0) {
-        searchResults.innerHTML = '<p class="text-sm text-red-500 font-medium">No results found. Try another search query.</p>';
-      } else {
-        searchResults.innerHTML = matches.map(item => `
-          <button class="block w-full text-left p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors" onclick="switchHubTab('${item.link}'); closeSearch(); document.getElementById('research-hub').scrollIntoView({behavior: 'smooth'});">
-            <h5 class="text-sm font-bold text-msblue dark:text-mscyan mb-1">${item.title}</h5>
-            <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-light">${item.text}</p>
-          </button>
-        `).join("");
-      }
-    });
-
-    // Particle Background Canvas implementation
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 2 + 1;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        
-        const activeThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-        ctx.fillStyle = htmlElement.classList.contains('dark') ? `${activeThemeColor}26` : `${activeThemeColor}14`;
-        ctx.fill();
-      }
-    }
-
-    // Draw nodes
-    function initParticles() {
-      particles = [];
-      const particleCount = Math.min(Math.floor(window.innerWidth / 12), 100);
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      // Draw connections
-      ctx.beginPath();
-      const maxDistance = 120;
-      const activeThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-          if (dist < maxDistance) {
-            const alphaVal = Math.floor((1 - dist / maxDistance) * 25.5);
-            const hexAlpha = alphaVal.toString(16).padStart(2, '0');
-            ctx.strokeStyle = `${activeThemeColor}${hexAlpha}`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-          }
-        }
-      }
-      ctx.stroke();
-
-      requestAnimationFrame(animate);
-    }
-
-    initParticles();
-    animate();
-    window.addEventListener('resize', initParticles);
-  </script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
-
-```
