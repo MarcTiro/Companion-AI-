@@ -45,3 +45,4 @@ CompanionAI/
 
 - The site uses Tailwind CSS, Google Fonts, and Lucide icons from public CDNs, so an internet connection is recommended for the full visual experience.
 - The contact form is a demonstration only; it displays a success message and does not send email.
+- The dataset used is just a sample and not the actual cleaned dataset
