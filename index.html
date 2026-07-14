@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CompanionAI Research Programme | Loneliness Detection & Embedded Intervention</title>
-  <meta name="description" content="A multidisciplinary research initiative focused on detecting loneliness using multimodal AI and delivering embedded interventions powered by Microsoft Azure.">
+  <meta name="description" content="A multidisciplinary research initiative focused on detecting loneliness using a textual dataset with behavioral descriptions, leveraging XLM-RoBERTa and SVM baselines, with embedded interventions powered by Microsoft Azure.">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -159,7 +159,7 @@
             CompanionAI <br class="hidden sm:inline">Research Programme
           </h1>
           <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-light leading-relaxed max-w-2xl mb-8">
-            A multidisciplinary research initiative focused on detecting loneliness using multimodal artificial intelligence and delivering embedded interventions through conversational systems powered by Microsoft Azure.
+            A multidisciplinary research initiative focused on detecting loneliness using a textual dataset with behavioral descriptions, leveraging XLM-RoBERTa and SVM baseline models, with embedded interventions through conversational systems powered by Microsoft Azure.
           </p>
           <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
             <a href="#research-hub" class="px-8 py-3.5 bg-msblue hover:bg-msblue/90 text-white font-medium rounded-lg shadow-lg shadow-msblue/25 text-center transition-all duration-200 transform hover:-translate-y-0.5">Explore Research Hub</a>
@@ -188,16 +188,16 @@
           <div class="w-full max-w-[420px] aspect-square rounded-full border border-gray-200/50 dark:border-white/5 flex items-center justify-center relative p-8">
             <div class="absolute inset-0 rounded-full border-2 border-dashed border-msblue/30 dark:border-msblue/10 animate-[spin_60s_linear_infinite]"></div>
             <div class="absolute -top-4 left-1/4 p-3 bg-white dark:bg-msdark border border-gray-200/80 dark:border-white/5 rounded-xl shadow-lg flex items-center space-x-2 animate-float">
-              <i data-lucide="mic" class="text-msblue w-5 h-5"></i>
-              <span class="text-xs font-semibold">Audio Processing</span>
+              <i data-lucide="book-open" class="text-msblue w-5 h-5"></i>
+              <span class="text-xs font-semibold">XLM-RoBERTa Model</span>
             </div>
             <div class="absolute bottom-6 -left-6 p-3 bg-white dark:bg-msdark border border-gray-200/80 dark:border-white/5 rounded-xl shadow-lg flex items-center space-x-2 animate-float" style="animation-delay: 2s">
-              <i data-lucide="text-cursor-input" class="text-accentpurple w-5 h-5"></i>
-              <span class="text-xs font-semibold">Sheng / Swahili NLP</span>
+              <i data-lucide="trending-up" class="text-accentpurple w-5 h-5"></i>
+              <span class="text-xs font-semibold">SVM Baseline Model</span>
             </div>
             <div class="absolute top-1/3 -right-8 p-3 bg-white dark:bg-msdark border border-gray-200/80 dark:border-white/5 rounded-xl shadow-lg flex items-center space-x-2 animate-float" style="animation-delay: 4s">
-              <i data-lucide="cpu" class="text-accentgreen w-5 h-5"></i>
-              <span class="text-xs font-semibold">Edge Deployment</span>
+              <i data-lucide="database" class="text-accentgreen w-5 h-5"></i>
+              <span class="text-xs font-semibold">Behavioral Text Dataset</span>
             </div>
             <div class="w-full h-full rounded-full bg-gradient-to-tr from-msblue/10 to-mscyan/10 border border-msblue/20 flex items-center justify-center overflow-hidden relative shadow-inner">
               <div class="absolute inset-0 opacity-40 mix-blend-overlay">
@@ -376,7 +376,7 @@
                   <span class="px-2.5 py-0.5 rounded bg-msblue/15 text-msblue text-xs font-semibold">Inputs & Ingestion</span>
                 </div>
                 <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                  Ingests records including raw Audio samples, user Text logs, and structural metadata detailing the social environment context.
+                  Ingests records including textual logs with behavioral descriptions, localized speech transcripts, and social environment context metadata.
                 </p>
               </div>
             </div>
@@ -390,7 +390,7 @@
                   <span class="px-2.5 py-0.5 rounded bg-msblue/15 text-msblue text-xs font-semibold">Feature & Models</span>
                 </div>
                 <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                  Performs real-time acoustic feature extraction, semantic parsing of text transcripts, and uses deep Transformer architectures for multimodal fusion.
+                  Performs tokenization of code-switched text, extracts semantic embeddings, and uses fine-tuned XLM-RoBERTa along with SVM baseline architectures.
                 </p>
               </div>
             </div>
@@ -561,7 +561,7 @@
                   <div>
                     <span class="text-xs font-bold uppercase tracking-wider text-msblue">Research Question</span>
                     <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 font-light">
-                      What deep learning models yield optimal classification accuracy when fusing acoustic prosody, conversational markers, and local code-switching transcripts?
+                      How does XLM-RoBERTa's cross-lingual capability optimize code-switched text classification compared to an SVM baseline model for detecting loneliness in behavioral descriptions?
                     </p>
                   </div>
                 </div>
@@ -609,7 +609,7 @@
                   <div>
                     <span class="text-xs font-bold uppercase tracking-wider text-msblue">Research Question</span>
                     <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 font-light">
-                      How can we prune and quantize multi-modal neural network models to run on mobile systems without degrading classification precision?
+                      How can we prune and quantize XLM-RoBERTa and SVM models to run on mobile systems without degrading classification precision on behavioral text datasets?
                     </p>
                   </div>
                 </div>
@@ -661,11 +661,11 @@
                     <i data-lucide="plus-circle" class="w-4 h-4 text-gray-400 group-hover:text-msblue transition-colors roadmap-toggle-icon"></i>
                   </h4>
                   <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                    Investigating acoustic feature extraction, sheng dictionaries, and multimodal network designs.
+                    Investigating tokenization of code-switched text, XLM-RoBERTa properties, and SVM baseline performances.
                   </p>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 dark:border-white/5 hidden roadmap-extra">
                     <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-light">
-                      Fuses signal acoustics with localized dialect transcripts.
+                      Analyzes code-switched sheng, swahili, and english behavioral descriptions.
                     </p>
                   </div>
                 </div>
@@ -721,7 +721,7 @@
                 <span class="text-xs font-bold text-msblue tracking-wider block mb-2">Semester 3</span>
                 <h4 class="font-bold text-gray-900 dark:text-white mb-2">Model Development</h4>
                 <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                  Training and testing audio-text classification algorithms with multimodal deep neural nets.
+                  Training and testing XLM-RoBERTa models and SVM baseline models on textual behavioral datasets.
                 </p>
               </div>
               <!-- Semester 4 -->
@@ -788,7 +788,7 @@
                 <h4 class="text-xl font-bold text-gray-900 dark:text-white">Newton</h4>
                 <p class="text-xs font-bold text-msblue uppercase tracking-widest mt-1 mb-4">Detection Lead</p>
                 <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light mb-6">
-                  Newton manages acoustics feature models, BERT text classifiers, and multi-modal neural fusion networks.
+                  Newton manages XLM-RoBERTa text classifiers, SVM baseline classification performance, and code-switched NLP tokenizers.
                 </p>
               </div>
               <div class="flex items-center justify-center space-x-4 border-t border-gray-100 dark:border-white/5 pt-4">
@@ -826,7 +826,7 @@
               <h4 class="text-lg font-bold text-gray-900 dark:text-white">Mongare Shem</h4>
               <p class="text-xs font-semibold text-msblue mb-3">Model Architect</p>
               <p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                Focuses on deep learning architectures, multimodal fusion techniques, and model quantization.
+                Focuses on transformer architectures, XLM-RoBERTa fine-tuning, and model quantization.
               </p>
             </div>
             <div class="reveal-on-scroll bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:shadow-md transition-shadow">
@@ -938,7 +938,7 @@
           <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Project Resources</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           <a href="assets/loneliness_phrases_dataset.xlsx" class="bg-gray-50 dark:bg-mscharcoal p-6 rounded-2xl border border-gray-200/50 dark:border-white/5 hover:border-msblue/40 hover:shadow-lg transition-all duration-300 block flex items-start space-x-4">
             <div class="w-12 h-12 rounded-xl bg-msblue/15 text-msblue flex items-center justify-center shrink-0">
               <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
@@ -971,6 +971,7 @@
               <span class="text-xs text-msblue font-semibold flex items-center">View Poster <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 ml-1"></i></span>
             </div>
           </a>
+
         </div>
       </div>
     </section>
